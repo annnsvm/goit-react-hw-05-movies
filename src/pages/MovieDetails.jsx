@@ -2,6 +2,7 @@ import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { getDetails } from '../services/api';
 import MovieCard from 'components/MovieCard/MovieCard';
+import { Button } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [details, setDetails] = useState({});
@@ -27,7 +28,7 @@ const MovieDetails = () => {
   return (
     <>
       <Link to={backLinkLocationRef.current}>
-        <button>Go back</button>
+        <Button>Go back</Button>
       </Link>
       <MovieCard movie={details} />
       <Suspense fallback={<div>Loading...</div>}>

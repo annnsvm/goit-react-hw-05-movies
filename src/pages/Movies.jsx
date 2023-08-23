@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getMovie } from '../services/api';
 import MovieForm from 'components/MovieForm/MovieForm';
+import {
+  MovieListTitle,
+  StyledMovieList,
+  MovieItem,
+  Poster,
+  Title,
+} from '../components/MovieLIst/MovieList.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -37,25 +44,27 @@ const Movies = () => {
   };
 
   return (
-    <main>
-      <section>
-        <h2>Search Movies:</h2>
-        <MovieForm onSubmit={handleSubmit} />
-        <ul>
-          {movies.map(({ id, title, poster_path }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                {title}
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
-                  alt=""
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </main>
+    <section>
+      <MovieListTitle>Search Movies</MovieListTitle>
+      <MovieForm onSubmit={handleSubmit} />
+      <StyledMovieList>
+        {movies.map(({ id, title, poster_path }) => (
+          <MovieItem key={id}>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
+              <Poster
+                src={
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${poster_path}`
+                    : 'https://via.placeholder.com/400x600.png?text=Poster+Not+Available'
+                }
+                alt=""
+              />
+              <Title> {title}</Title>
+            </Link>
+          </MovieItem>
+        ))}
+      </StyledMovieList>
+    </section>
   );
 };
 

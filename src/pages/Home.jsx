@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getTrading } from '../services/api';
 import MovieList from 'components/MovieLIst/MovieList';
+import Loader from 'components/Loader/Loader';
 
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
@@ -25,9 +26,8 @@ const Home = () => {
 
   return (
     <>
-      <h2>Trending movies:</h2>
       {loading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : error ? (
         <div>Sorry, we couldn't fetch trending images.Try again later</div>
       ) : (

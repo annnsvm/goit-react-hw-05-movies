@@ -8,13 +8,6 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Layout = lazy(() => import('./Layout/Layout'));
 
-// import Home from '../pages/Home';
-// import Movies from '../pages/Movies';
-// import MovieDetails from 'pages/MovieDetails';
-// import Cast from './Cast/Cast';
-// import Reviews from './Reviews/Reviews';
-// import Layout from './Layout/Layout';
-
 export const App = () => {
   return (
     <Routes>

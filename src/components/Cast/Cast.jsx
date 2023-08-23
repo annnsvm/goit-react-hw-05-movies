@@ -1,6 +1,13 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { getCast } from '../../services/api';
+import {
+  CastList,
+  CastItem,
+  CastListTitle,
+  CastCardInfo,
+  CastCardImg,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -21,29 +28,29 @@ const Cast = () => {
 
   return (
     <>
-      <h2>Cast</h2>
+      <CastListTitle>Cast</CastListTitle>
       {cast.length ? (
-        <ul>
+        <CastList>
           {cast.map(({ id, profile_path, name, character }) => (
-            <li key={id}>
+            <CastItem key={id}>
               {profile_path ? (
-                <img
+                <CastCardImg
                   src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
                   alt={`${name}`}
                 />
               ) : (
-                <img
+                <CastCardImg
                   src="https://via.placeholder.com/200x300.png?text=Poster+Not+Available"
                   alt={`${name}`}
                 />
               )}
-              <div>
+              <CastCardInfo>
                 <p>{name}</p>
-                <p>Character: {character}</p>
-              </div>
-            </li>
+                <p>{character}</p>
+              </CastCardInfo>
+            </CastItem>
           ))}
-        </ul>
+        </CastList>
       ) : (
         <p>We don't have any information about cast yet</p>
       )}

@@ -1,10 +1,17 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { getReviews } from '../../services/api';
+import {
+  ReviewsTitle,
+  ReviewsAuthor,
+  ShowMoreButton,
+  ReviewsText,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -21,13 +28,19 @@ const Reviews = () => {
 
   return (
     <>
-      <h2>Reviews</h2>
+      <ReviewsTitle>Reviews</ReviewsTitle>
       {reviews.length ? (
         <ul>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
-              <h2>{author}</h2>
-              <p>{content}</p>
+              <ReviewsAuthor>{author}</ReviewsAuthor>
+
+              <ReviewsText>
+                {showMore ? content : `${content.substring(0, 250)}`}
+                <ShowMoreButton onClick={() => setShowMore(!showMore)}>
+                  {showMore ? 'Show less' : 'Show more...'}
+                </ShowMoreButton>
+              </ReviewsText>
             </li>
           ))}
         </ul>

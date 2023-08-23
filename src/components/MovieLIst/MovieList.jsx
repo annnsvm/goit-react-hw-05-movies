@@ -1,21 +1,29 @@
-const { Link } = require('react-router-dom');
+import { Link } from 'react-router-dom';
+import {
+  StyledMovieList,
+  MovieItem,
+  MovieListTitle,
+  Poster,
+  Title,
+} from './MovieList.styled';
 
 const MovieList = ({ trendMovies }) => {
   return (
     <section>
-      <ul>
+      <MovieListTitle>Trending movies</MovieListTitle>
+      <StyledMovieList>
         {trendMovies.map(({ id, title, poster_path }) => (
-          <li key={id}>
+          <MovieItem key={id}>
             <Link to={`/movies/${id}`}>
-              {title}
-              <img
+              <Poster
                 src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
                 alt=""
               />
+              <Title>{title}</Title>
             </Link>
-          </li>
+          </MovieItem>
         ))}
-      </ul>
+      </StyledMovieList>
     </section>
   );
 };
