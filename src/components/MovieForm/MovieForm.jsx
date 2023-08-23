@@ -1,6 +1,7 @@
 import { Form, Input, Button } from './MovieForm.styled'; //styles
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PropTypes from 'prop-types';
 
 const MovieForm = ({ onSubmit }) => {
   const handleSubmit = e => {
@@ -24,5 +25,7 @@ const MovieForm = ({ onSubmit }) => {
     </Form>
   );
 };
+
+MovieForm.propTypes = { onSubmit: PropTypes.func.isRequired };
 
 export default MovieForm;

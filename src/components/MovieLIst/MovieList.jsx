@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   StyledMovieList,
   MovieItem,
@@ -26,6 +27,16 @@ const MovieList = ({ trendMovies }) => {
       </StyledMovieList>
     </section>
   );
+};
+
+MovieList.propTypes = {
+  trendMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default MovieList;
