@@ -34,7 +34,7 @@ const Movies = () => {
       }
     };
     getMoviesByName();
-  }, [searchParams]);
+  }, [searchParams, query]);
 
   const handleSubmit = query => {
     if (query === '') {
